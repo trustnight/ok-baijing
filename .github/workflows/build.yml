@@ -53,7 +53,6 @@ jobs:
           python -m ok.update.gen_md5 .\dist\bundle
           mv dist/bundle ok-baijing
           7z a -t7z -r "ok-baijing-debug-${{ steps.tagName.outputs.tag }}.7z" "ok-baijing"
-
         shell: pwsh
 
       - name: Create Release
@@ -62,8 +61,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: ${{ steps.tagName.outputs.tag }}
+          release_name: Release ${{ steps.tagName.outputs.tag }}
           body: |
             下载release.7z文件然后解压缩后运行, 如果需要查找问题，上传更多日志才需要下载debug版本
             最好使用模拟器运行安卓版，可以挂后台，稳定。PC版游戏可能兼容性较差，无法挂后台。
@@ -91,6 +90,3 @@ jobs:
           asset_path: ./ok-baijing-debug-${{ steps.tagName.outputs.tag }}.7z
           asset_name: ok-baijing-debug-${{ steps.tagName.outputs.tag }}.7z
           asset_content_type: application/zip
-
-
-
