@@ -10,7 +10,7 @@ from task.DailyTask import DailyTask
 from task.JoinGameTask import JoinGameTask
 from task.ManXunTask import ManXunTask
 
-version = "v1.4.11"
+version = "v1.0.0"
 
 
 def calculate_pc_exe_path(running_path):
