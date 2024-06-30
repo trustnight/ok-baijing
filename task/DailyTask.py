@@ -116,8 +116,8 @@ class DailyTask(BJTask):
 
     def heyici(self):
         diandan = self.wait_until(
-            condition = lambda: self.ocr(0.8, 0.7, 0.95, 0.83, match="开始点单") or
-                                self.ocr(0.8, 0.83, 0.95, 0.95, match="开始点单") or
+            condition = lambda: self.ocr(0.8, 0.83, 0.95, 0.95, match="再来一杯") or
+                                self.ocr(0.8, 0.7, 0.95, 0.83, match="开始点单") or
                                 self.find_feature("hecha_chat",
                                                 x=0.65, y=0.31,
                                                 to_x=0.93,
@@ -128,7 +128,7 @@ class DailyTask(BJTask):
             self.log_error("找不到开始点单")
             raise Exception("找不到开始点单")
         
-        if diandan[0].name == '开始点单':  # 如果是喝完直接跳过
+        if diandan[0].name == '再来一杯':  # 如果是喝完直接跳过
             self.click_box(diandan)
         elif diandan[0].name == '开始点单':  # 如果是喝完直接跳过
             self.click_box(diandan)
